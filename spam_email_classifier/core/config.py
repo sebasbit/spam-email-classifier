@@ -1,3 +1,16 @@
+import os
+import sys
+
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
+
 UI_TEXTS = {
     "window_title": "CLASIFICADOR DE CORREOS SPAM",
     "app_title": "CLASIFICADOR DE CORREOS SPAM",
@@ -19,4 +32,5 @@ WINDOW_SIZE = "500x500"
 MIN_CHARS_SUBJECT = 8
 MIN_CHARS_MESSAGE = 16
 IMG_EXTENSION = "png"
-ASSETS_DIR = "assets/word_graphs"
+ASSETS_DIR = resource_path(os.path.join("assets", "word_graphs"))
+FAVICON = resource_path(os.path.join("assets", "favicon.ico"))

@@ -4,7 +4,7 @@ from spam_email_classifier.controllers.result_controller import ResultController
 from spam_email_classifier.models.dto import Message
 from spam_email_classifier.models.dummy_classifier import DummyClassifier
 from spam_email_classifier.views.main_view import MainView
-from spam_email_classifier.core.config import UI_TEXTS, WINDOW_SIZE
+from spam_email_classifier.core.config import UI_TEXTS, WINDOW_SIZE, FAVICON
 
 
 class AppController:
@@ -14,6 +14,7 @@ class AppController:
         self.root.title(UI_TEXTS["window_title"])
         self.root.geometry(WINDOW_SIZE)
         self.root.resizable(False, False)
+        self.root.iconbitmap(FAVICON)
 
         self.root.protocol("WM_DELETE_WINDOW", self.on_app_close)
 

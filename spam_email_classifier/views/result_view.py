@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-from spam_email_classifier.core.config import UI_TEXTS, ASSETS_DIR, IMG_EXTENSION
+from spam_email_classifier.core.config import UI_TEXTS, ASSETS_DIR, IMG_EXTENSION, FAVICON
 from spam_email_classifier.models.dto import MessageClassification
 
 
@@ -14,6 +14,7 @@ class ResultView(ttk.Toplevel):
         super().__init__(title=UI_TEXTS["app_title"])
         self.geometry("600x600")
         self.resizable(True, True)
+        self.iconbitmap(FAVICON)
 
         self.protocol("WM_DELETE_WINDOW", self.on_close)
 
