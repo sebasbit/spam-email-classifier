@@ -1,14 +1,16 @@
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
+from tkinter import messagebox
 from tkinter.scrolledtext import ScrolledText
-from spam_email_classifier.core.config import UI_TEXTS
+from spam_email_classifier.core.config import UI_TEXTS, MIN_CHARS_SUBJECT, MIN_CHARS_MESSAGE
 
 
 class MainView(ttk.Frame):
-    def __init__(self, parent):
+    def __init__(self, parent, controller=None):
         super().__init__(parent, padding=20)
-        self.subject_entry = None
         self.parent = parent
+        self.controller = controller
+        self.subject_entry = None
         self.pack(fill=BOTH, expand=YES)
 
         self.create_header()
@@ -60,4 +62,20 @@ class MainView(ttk.Frame):
         classify_btn.pack(pady=20)
 
     def on_classify_click(self):
-        pass
+        subject = self.subject_entry.get()
+        message_body = self.message_text.get("1.0", "end-1c")
+
+        if not subject or len(subject) < MIN_CHARS_SUBJECT:
+            messagebox.showerror(UI_TEXTS["validation_error"],
+                                 UI_TEXTS["validation_min_chars"].format(field=UI_TEXTS["subject_group"],
+                                                                         n_chars=MIN_CHARS_SUBJECT))
+            return
+
+        if not message_body or len(message_body) < MIN_CHARS_MESSAGE:
+            messagebox.showerror(UI_TEXTS["validation_error"],
+                                 UI_TEXTS["validation_min_chars"].format(field=UI_TEXTS["message_group"],
+                                                                         n_chars=MIN_CHARS_MESSAGE))
+            return
+
+        if self.controller:
+            self.controller.handle_classify(subject, message_body)
