@@ -1,3 +1,4 @@
+import sys
 import ttkbootstrap as ttk
 from spam_email_classifier.controllers.result_controller import ResultController
 from spam_email_classifier.models.dto import Message
@@ -14,6 +15,8 @@ class AppController:
         self.root.geometry(WINDOW_SIZE)
         self.root.resizable(False, False)
 
+        self.root.protocol("WM_DELETE_WINDOW", self.on_app_close)
+
         self.view = MainView(self.root, controller=self)
 
         self.classifier = DummyClassifier()  # TODO: implement real classifier.
@@ -25,3 +28,7 @@ class AppController:
         message_dto = Message(subject=subject, body=message_body)
         result_ctrl = ResultController(self.classifier)
         result_ctrl.show(message_dto)
+
+    def on_app_close(self):
+        self.root.destroy()
+        sys.exit()

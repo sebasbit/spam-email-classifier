@@ -15,6 +15,8 @@ class ResultView(ttk.Toplevel):
         self.geometry("600x600")
         self.resizable(True, True)
 
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
+
         self.data = classification
 
         self.main_frame = ttk.Frame(self, padding=20)
@@ -104,3 +106,7 @@ class ResultView(ttk.Toplevel):
         canvas = FigureCanvasTkAgg(fig, master=frame)
         canvas.draw()
         canvas.get_tk_widget().pack(fill=BOTH, expand=YES)
+
+    def on_close(self):
+        plt.close('all')
+        self.destroy()
