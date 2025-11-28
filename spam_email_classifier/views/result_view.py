@@ -1,6 +1,7 @@
 import os
 import ttkbootstrap as ttk
 from ttkbootstrap.constants import *
+from ttkbootstrap.scrolled import ScrolledFrame
 from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
@@ -20,7 +21,7 @@ class ResultView(ttk.Toplevel):
 
         self.data = classification
 
-        self.main_frame = ttk.Frame(self, padding=20)
+        self.main_frame = ScrolledFrame(self, padding=20)
         self.main_frame.pack(fill=BOTH, expand=YES)
 
         self.create_header()
@@ -70,16 +71,17 @@ class ResultView(ttk.Toplevel):
             img_path = os.path.join(ASSETS_DIR, f"bar_plot_{word}.png")
 
             item_frame = ttk.Frame(frame)
-            item_frame.pack(side=LEFT, padx=10)
+            item_frame.pack(pady=5)
 
             ttk.Label(item_frame, text=word, font=("Consolas", 10, "bold")).pack()
 
             try:
                 pil_img = Image.open(img_path)
-                pil_img = pil_img.resize((300, 100), Image.LANCZOS)
+                pil_img = pil_img.resize((500, 300), Image.LANCZOS)
                 tk_img = ImageTk.PhotoImage(pil_img)
 
                 img_lbl = ttk.Label(item_frame, image=tk_img)
+                img_lbl.image = tk_img
                 img_lbl.pack()
             except Exception:
                 ttk.Label(item_frame, text=UI_TEXTS["no_graph"], bootstyle="secondary").pack()
