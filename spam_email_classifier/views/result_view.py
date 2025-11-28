@@ -5,7 +5,7 @@ from PIL import Image, ImageTk
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-from spam_email_classifier.core.config import UI_TEXTS, ASSETS_DIR, IMG_EXTENSION, FAVICON
+from spam_email_classifier.core.config import UI_TEXTS, ASSETS_DIR, FAVICON
 from spam_email_classifier.models.dto import MessageClassification
 
 
@@ -67,7 +67,7 @@ class ResultView(ttk.Toplevel):
             return
 
         for i, word in enumerate(self.data.found_words):
-            img_path = os.path.join(ASSETS_DIR, f"{word}.{IMG_EXTENSION}")
+            img_path = os.path.join(ASSETS_DIR, f"bar_plot_{word}.png")
 
             item_frame = ttk.Frame(frame)
             item_frame.pack(side=LEFT, padx=10)
@@ -76,7 +76,7 @@ class ResultView(ttk.Toplevel):
 
             try:
                 pil_img = Image.open(img_path)
-                pil_img = pil_img.resize((100, 100), Image.LANCZOS)
+                pil_img = pil_img.resize((300, 100), Image.LANCZOS)
                 tk_img = ImageTk.PhotoImage(pil_img)
 
                 img_lbl = ttk.Label(item_frame, image=tk_img)

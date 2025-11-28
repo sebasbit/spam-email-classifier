@@ -31,6 +31,5 @@ UI_TEXTS = {
 WINDOW_SIZE = "500x500"
 MIN_CHARS_SUBJECT = 8
 MIN_CHARS_MESSAGE = 16
-IMG_EXTENSION = "png"
-ASSETS_DIR = resource_path(os.path.join("assets", "word_graphs"))
+ASSETS_DIR = resource_path(os.path.join("assets", "bar_plots"))
 FAVICON = resource_path(os.path.join("assets", "favicon.ico"))
