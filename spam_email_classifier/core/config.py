@@ -32,4 +32,5 @@ WINDOW_SIZE = "500x500"
 MIN_CHARS_SUBJECT = 8
 MIN_CHARS_MESSAGE = 16
 ASSETS_DIR = resource_path(os.path.join("assets", "bar_plots"))
+MODEL_DIR = resource_path(os.path.join("assets", "models", "spam_classifier_model")) # omit .pkl
 FAVICON = resource_path(os.path.join("assets", "favicon.ico"))

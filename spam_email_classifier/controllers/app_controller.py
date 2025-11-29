@@ -3,6 +3,7 @@ import ttkbootstrap as ttk
 from spam_email_classifier.controllers.result_controller import ResultController
 from spam_email_classifier.models.dto import Message
 from spam_email_classifier.models.dummy_classifier import DummyClassifier
+from spam_email_classifier.models.spam_classifier import SpamClassifier
 from spam_email_classifier.views.main_view import MainView
 from spam_email_classifier.core.config import UI_TEXTS, WINDOW_SIZE, FAVICON
 
@@ -20,7 +21,7 @@ class AppController:
 
         self.view = MainView(self.root, controller=self)
 
-        self.classifier = DummyClassifier()  # TODO: implement real classifier.
+        self.classifier = SpamClassifier() # DummyClassifier()
 
     def run(self):
         self.root.mainloop()
