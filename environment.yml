@@ -9,7 +9,9 @@ dependencies:
   - scikit-learn
   - matplotlib
   - pillow
+  - scipy
   - pip
   - pip:
+    - pycaret
     - ttkbootstrap
     - pyinstaller
