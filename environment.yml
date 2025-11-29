@@ -4,6 +4,7 @@ channels:
   - defaults
 dependencies:
   - python=3.10
+  - setuptools=69.5.1
   - numpy
   - pandas
   - scikit-learn
