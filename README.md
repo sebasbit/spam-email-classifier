@@ -35,5 +35,5 @@ Navega a la carpeta raíz del proyecto y utiliza el siguiente comando. Este coma
 necesarios y dependencias en un solo archivo.
 
 ```bash
-pyinstaller --noconsole --onefile --name spam_email_classifier --windowed --icon=assets\favicon.ico --add-data "assets;assets" --collect-all ttkbootstrap main.py
+pyinstaller --noconsole --onefile --windowed --name spam_email_classifier --icon=assets\favicon.ico --add-data "assets;assets" --collect-all ttkbootstrap --collect-all pycaret --collect-all sklearn --collect-all pandas --collect-all lightgbm --hidden-import="sklearn.metrics._scorer" --hidden-import="scipy.special.cython_special" main.py
 ```
